@@ -1,6 +1,7 @@
 'use strict';
 
 const { INTEGER } = require('sequelize');
+const env = process.env.NODE_ENV || 'development';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -34,17 +35,9 @@ module.exports = {
       s_description: {
         type: Sequelize.STRING,
         allowNull: false
-      },
-      createdAt: { 
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updatedAt: { 
-        type: Sequelize.DATE,
-        allowNull: false,
       }
-    })
-  },
+    }, {schema: env})
+},
 
   async down (queryInterface, Sequelize) {
     /**
